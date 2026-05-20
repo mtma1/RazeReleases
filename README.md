@@ -5,7 +5,8 @@
 RAZE lets you create AI employees, organize them into groups, assign jobs, and run an AI-powered workspace from your own machine. You bring your own model provider, your own API keys, and your own local runtime.
 
 Website: [openraze.com](https://openraze.com)  
-X: [@raze_devo](https://x.com/raze_devo)
+X: [@raze_devo](https://x.com/raze_devo)  
+Creator: [@1mtma](https://x.com/1mtma)
 
 ---
 
@@ -25,7 +26,7 @@ RAZE is designed for builders, students, developers, creators, researchers, and 
 
 ### Local-first runtime
 
-RAZE runs on your machine. The dashboard, runtime, employees, groups, and jobs are managed locally.
+RAZE runs on your machine. The dashboard, runtime, employees, groups, jobs, and provider settings are managed locally.
 
 ### Bring your own model
 
@@ -73,7 +74,7 @@ RAZE includes a dashboard for managing:
 
 ### Approval-first workflow
 
-RAZE is designed around user control. Sensitive actions should be approved by the user before execution.
+RAZE is designed around user control. Sensitive actions should be reviewed and approved by the user before execution.
 
 ---
 
@@ -101,17 +102,19 @@ for /f "delims=" %i in ('python -c "import sysconfig; print(sysconfig.get_path('
 raze onboard
 ```
 
+Then check RAZE status:
+
+```cmd
+raze status
+```
+
 The second line automatically adds the correct Python `Scripts` folder to the current terminal session. This helps when Windows says:
 
 ```txt
 'raze' is not recognized as an internal or external command
 ```
 
-After onboarding, start RAZE:
-
-```cmd
-raze start
-```
+Important: this PATH change is temporary for the current terminal window only.
 
 ---
 
@@ -125,10 +128,10 @@ $env:PATH += ";" + (python -c "import sysconfig; print(sysconfig.get_path('scrip
 raze onboard
 ```
 
-Then start RAZE:
+Then check RAZE status:
 
 ```powershell
-raze start
+raze status
 ```
 
 ---
@@ -141,10 +144,10 @@ export PATH="$PATH:$(python3 -c 'import sysconfig; print(sysconfig.get_path("scr
 raze onboard
 ```
 
-Then start RAZE:
+Then check RAZE status:
 
 ```bash
-raze start
+raze status
 ```
 
 ---
@@ -167,6 +170,12 @@ raze setup
 
 Use setup to configure your model provider, local model, or API-based model.
 
+To see the commands available in your installed version:
+
+```bash
+raze --help
+```
+
 ---
 
 ## Common Commands
@@ -184,10 +193,10 @@ raze setup
 Configure providers, models, and local settings.
 
 ```bash
-raze start
+raze status
 ```
 
-Start the local RAZE runtime and dashboard.
+Check the current RAZE runtime status.
 
 ```bash
 raze doctor
@@ -196,16 +205,16 @@ raze doctor
 Check your installation and runtime health.
 
 ```bash
-raze stop
-```
-
-Stop the local RAZE runtime.
-
-```bash
 raze update
 ```
 
 Update the managed RAZE runtime bundle when a new version is available.
+
+```bash
+raze --help
+```
+
+Show all commands available in your installed version.
 
 ---
 
@@ -232,7 +241,7 @@ Local Runtime
    +--> Provider Settings
 ```
 
-The CLI starts and manages the local runtime.  
+The CLI starts and manages the local runtime through onboarding and runtime commands.  
 The dashboard gives you a visual control center.  
 The core service coordinates employees, jobs, providers, and local state.
 
@@ -378,6 +387,14 @@ raze doctor
 
 ---
 
+### Check runtime status
+
+```bash
+raze status
+```
+
+---
+
 ## Example Use Cases
 
 RAZE can help with workflows like:
@@ -441,10 +458,10 @@ for /f "delims=" %i in ('python -c "import sysconfig; print(sysconfig.get_path('
 raze onboard
 ```
 
-ثم:
+ثم تحقق من الحالة:
 
 ```cmd
-raze start
+raze status
 ```
 
 إذا ظهر لك أن أمر `raze` غير معروف، فهذا غالبًا بسبب أن مسار Python Scripts غير مضاف للـ PATH. الأمر الثاني في الأعلى يحل المشكلة مؤقتًا داخل نفس نافذة التيرمنل.
